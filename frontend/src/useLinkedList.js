@@ -31,23 +31,22 @@ export function useLinkedList(){
             setLoading(false)
         }
     }
-
     function syncList(newNodes) {
+        if (!newNodes) return;
         setNodes(newNodes);
         setPositions(prev => {
-            const next = {...prev};
+            const next = { ...prev };
             newNodes.forEach(n => {
-                if (!next[n.id]){
-                    next[n.id] = {
-                        x:80+Math.random()*640,
-                        y: 80+Math.random()*340,
-                    }
-                }
-            });
-            return next;
-        })
-    }
-
+            if (!next[n.id]) {
+                next[n.id] = {
+                x: 80 + Math.random() * 640,
+                y: 80 + Math.random() * 340,
+                };
+            }
+            }); 
+        return next;
+    });
+    }          
     useEffect(() =>{
         async function load() {
             const data = await callApi(() => api.getList())
@@ -57,7 +56,7 @@ export function useLinkedList(){
     }, []);
 
     async function create(){
-        if (!inputVal,trim()) return;
+        if (!inputVal.trim()) return;
         const data = await callApi(() => api.createNode(inputVal.trim()))
         if (data) {
             syncList(data.list);
@@ -135,7 +134,7 @@ export function useLinkedList(){
     }
 
     return {
-        node,
+        nodes,
         positions,
         highlighted,
         mode,

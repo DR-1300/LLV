@@ -15,6 +15,13 @@ async function request(path, options = {}) {
     return data
 }
 
+export async function createNode(val) {
+  return request("/node", {
+    method: "POST",
+    body: JSON.stringify({ val }),
+  });
+}
+
 export async function searchNode(val) {
     return request('/search?val=${encodeURIComponent(val)}');
 }
