@@ -76,6 +76,13 @@ def connect_nodes(from_id: int, to_id: int):
     
     return {"message": f"Node {from_id} now points to {to_id}", "list": ll.to_dict()}
 
+@app.delete("/clear")
+def clear_list():
+    ll._nodes.clear()
+    ll.head = None
+    ll._id_seq = 1
+    return {"message": "List cleared"}
+
 @app.patch("/node/{node_id}/disconnect")
 def disconnect_nodes(node_id: int):
     success = ll.disconnect(node_id)

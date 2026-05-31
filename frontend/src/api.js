@@ -23,7 +23,7 @@ export async function createNode(val) {
 }
 
 export async function searchNode(val) {
-    return request('/search?val=${encodeURIComponent(val)}');
+    return request(`/search?val=${encodeURIComponent(val)}`);
 }
 export async function deleteNode(id) {
   return request(`/node/${id}`, {
@@ -42,6 +42,9 @@ export async function alterNode(id, newVal) {
     method: "PATCH",
     body: JSON.stringify({ new_val: newVal }),
   });
+}
+export async function clearList() {
+    return request("/clear", { method: "DELETE" });
 }
 export async function getList() {
   return request("/list");
