@@ -1,5 +1,7 @@
 # Linked List Visualiser
 
+[Live demo](https://youtu.be/Eb9dLVi50oE)
+
 An interactive singly linked list visualiser built with React and FastAPI.
 Supports intersections, drag-and-drop nodes, and animated search traversal.
 
